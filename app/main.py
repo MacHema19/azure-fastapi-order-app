@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.db.database import Base, engine
-from app.routers import customers, menu, orders
+from app.routers import customers, menu, orders, ai
 
 Base.metadata.create_all(bind=engine)
 
@@ -14,6 +14,7 @@ app.include_router(customers.router)
 app.include_router(menu.router)
 app.include_router(orders.router)
 
+app.include_router(ai.router)
 
 @app.get("/")
 def root():
@@ -21,3 +22,4 @@ def root():
         "message": "Food Order Management API is running",
         "docs": "/docs"
     }
+
